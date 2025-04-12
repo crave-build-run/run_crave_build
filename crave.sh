@@ -96,7 +96,7 @@ cd ../../
 # cd ../../../../../
 
 # Set up build environment
-export BUILD_USERNAME=tavukkdoner 
+export BUILD_USERNAME=framework_XD
 export BUILD_HOSTNAME=crave
 
 source build/envsetup.sh
