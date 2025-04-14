@@ -1,127 +1,60 @@
 #!/bin/bash
 
-# Remove Local Manifests
-rm -rf .repo/local_manifests/ 
-rm -rf hardware/mithorium/
 
-# Init Rom Manifest
-repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+repo init -u https://github.com/RisingOS-Revived/android -b fifteen --git-lfs
+/opt/crave/resync.sh
 
-# Clone local_manifests repository
-# git clone https://github.com/tavukkdoner/local_manifests.git --depth 1 -b a14-los-official-test .repo/local_manifests 
-# git clone https://github.com/tavukkdoner/local_manifests.git --depth 1 -b a14-los-official-avc1-viperfx .repo/local_manifests
-# git clone https://github.com/tavukkdoner/local_manifests1.git --depth 1 -b a15-crdroid-mithorium .repo/local_manifests 
-git clone https://github.com/tavukkdoner/local_manifests.git --depth 1 -b a15-qpr2 .repo/local_manifests
+# Remove existing directories to avoid conflicts
+rm -rf device/xiaomi/sunny
+rm -rf device/qcom/common
+rm -rf device/qcom/qssi
+rm -rf device/xiaomi/sunny-kernel
+rm -rf vendor/xiaomi/sunny
+rm -rf vendor/qcom/common
+rm -rf vendor/qcom/opensource/core-utils
+rm -rf packages/apps/DisplayFeatures
+rm -rf packages/apps/KProfiles
+rm -rf hardware/xiaomi
+rm -rf prebuilts/gcc/linux-x86/aarch64/aarch64-elf
+rm -rf prebuilts/gcc/linux-x86/arm/arm-eabi
+rm -rf packages/apps/ViPER4AndroidFX
+rm -rf vendor/bcr
+rm -rf vendor/xiaomi/mojito-leicacamera
+rm -rf vendor/xiaomi/miuiapps
+rm -rf vendor/xiaomi/dynamicSpot
+rm -rf vendor/lineage-priv/keys
+# must remove
+rm -rf hardware/qcom-caf/sm8150/media
 
-# git clone https://github.com/tavukkdoner/local_manifests.git --depth 1 -b a14-los-official-test .repo/local_manifests && 
-# if [ ! $? == 0 ]
-# then   curl -o .repo/local_manifests https://github.com/tavukkdoner/local_manifests.git
-#  echo "Git clone failed, downloading through curl instead..."
-# fi 
+# Clone device-specific repositories
+git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git --depth 1 -b fifteen device/xiaomi/sunny
 
-# Sync the repositories  
-# /opt/crave/resync.sh 
-/opt/crave/resynctest.sh
+git clone https://github.com/yaap/device_qcom_common.git --depth 1 -b fifteen device/qcom/common
+git clone https://github.com/AOSPA/android_device_qcom_qssi.git --depth 1 -b vauxite device/qcom/qssi
+git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny-kernel.git --depth 1 -b fifteen device/xiaomi/sunny-kernel
 
-# Ty Crave 
-# cd packages/apps/Settings
-# git remote add tmpRepo https://github.com/tavukkdoner/android_packages_apps_Settings
-# git fetch tmpRepo 15.0
-# git cherry-pick 3a97225
-# git cherry-pick 46f3cd9
-# git cherry-pick e6444ae
-# https://github.com/tavukkdoner/android_packages_apps_Settings/commit/1ebf2c407e48741d2a6b06e45837580230c3256f
-# git revert 1ebf2c4
-# git remote remove tmpRepo
-# cd ../../../
+# Clone vendor repositories
+git clone https://github.com/RisingOS-Revived-devices/vendor_xiaomi_sunny.git --depth 1 -b fifteen vendor/xiaomi/sunny
+git clone https://gitlab.com/yaosp/vendor_qcom_common.git --depth 1 -b fifteen vendor/qcom/common
+git clone https://github.com/yaap/vendor_qcom_opensource_core-utils.git --depth 1 -b fifteen vendor/qcom/opensource/core-utils
 
-cd frameworks/base
-git remote add tmpRepo https://github.com/tavukkdoner/android_frameworks_base
-git fetch tmpRepo 15.0
-git cherry-pick 2071b92
-git cherry-pick 4841960
-git remote remove tmpRepo
-cd ../../
+# Clone package repositories
+git clone https://github.com/cyberknight777/android_packages_apps_DisplayFeatures --depth 1 -b master packages/apps/DisplayFeatures
+git clone https://github.com/KProfiles/android_packages_apps_Kprofiles.git --depth 1 -b main packages/apps/KProfiles
 
-# cd lineage-sdk
-# git remote add tmpRepo1 https://github.com/tavukkdoner/android_lineage-sdk
-# git fetch tmpRepo1 15.0
-# git cherry-pick a3743d1
-# git remote remove tmpRepo1
-# cd ../
+# Clone hardware repositories
+git clone https://github.com/yaap/hardware_xiaomi.git --depth 1 -b fifteen hardware/xiaomi
+git clone https://github.com/yaap/hardware_qcom-caf_sm8150_media.git --depth 1 -b fifteen hardware/qcom-caf/sm8150/media
 
-cd vendor/lineage
-git remote add tmpRepo2 https://github.com/tavukkdoner/android_vendor_crdroid
-git fetch tmpRepo2 15.0
-git cherry-pick 6e3d8bd
-git remote remove tmpRepo2
-#git remote add tmpRepo4 https://github.com/LineageOS/android_vendor_lineage
-#git fetch tmpRepo4 lineage-22.0
-#git cherry-pick d6777fa
-#git remote remove tmpRepo4
-cd ../../
+# Clone prebuilt GCC toolchains
+git clone https://github.com/StatiXOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-elf.git --depth 1 -b 14.0.0 prebuilts/gcc/linux-x86/aarch64/aarch64-elf
+git clone https://github.com/StatiXOS/android_prebuilts_gcc_linux-x86_arm_arm-eabi.git --depth 1 -b 12.0.0 prebuilts/gcc/linux-x86/arm/arm-eabi
 
-# cd packages/modules/Connectivity
-# git remote add tmpRepo7 https://github.com/LineageOS/android_packages_modules_Connectivity
-# git fetch tmpRepo7 lineage-22.1
-# git revert 7f2b3da
-# git remote add tmpRepo7 https://github.com/tavukkdoner/android_packages_modules_Connectivity
-# git fetch tmpRepo7 lineage-22.1
-# git cherry-pick bdd1db1
-# cd ../../../
-
-#cd system/netd
-#git remote add tmpRepo5 https://github.com/tavukkdoner/android_system_netd
-#git fetch tmpRepo5 lineage-22.0
-#git cherry-pick d904525
-#git remote remove tmpRepo5
-#cd ../../
-
-#cd build/soong
-#git remote add tmpRepo3 https://github.com/LineageOS/android_build_soong
-#git fetch tmpRepo3 lineage-22.0
-#git cherry-pick 9d6c7dc
-#git remote remove tmpRepo3
-#cd ../../
-
-# cd packages/apps/DocumentsUI
-# git remote add tmpRepo6 https://github.com/tavukkdoner/android_packages_apps_DocumentsUI
-# git fetch tmpRepo6 15.0
-# git cherry-pick db1dd11
-# git remote remove tmpRepo6
-# cd ../../../
-
-# cd frameworks/av/media/libstagefright/data/
-# curl -O https://raw.githubusercontent.com/tavukkdoner/patches/refs/heads/main/media_codecs_sw.xml
-# cd ../../../../../
-
-# Set up build environment
-export BUILD_USERNAME=framework_XD
-export BUILD_HOSTNAME=crave
-
-source build/envsetup.sh
-
-if [ ! -e "vendor/lineage-priv" ]; then
-    curl -O https://raw.githubusercontent.com/tavukkdoner/crDroid-build-signed-script/crdroid/create-signed-env.sh
-    chmod +x create-signed-env.sh
-    ./create-signed-env.sh
-fi
- 
-# Build the ROM
-# lunch lineage_Mi439-ap2a-userdebug && make installclean && mka bacon
-
-# Build the ROM
-# lunch lineage_Mi439_4_19-ap2a-userdebug && make installclean && mka bacon
-
-# https://review.lineageos.org/c/LineageOS/android_vendor_lineage/+/402103
-# lunch lineage_Mi439_4_19-ap3a-userdebug && make installclean && mka bacon
-# lunch lineage_Mi439_4_19-ap3a-eng && make installclean && mka bacon
-
-# https://review.lineageos.org/c/LineageOS/android_vendor_lineage/+/411251
-# lunch lineage_Mi439_4_19-ap4a-userdebug && make installclean && mka bacon
-# lunch lineage_Mi439_4_19-ap4a-eng && make installclean && mka bacon
-
-# https://android.googlesource.com/platform/hardware/interfaces/+/refs/tags/android-15.0.0_r23
-# https://review.lineageos.org/c/LineageOS/android_vendor_lineage/+/421399
-# lunch lineage_Mi439_4_19-bp1a-userdebug && make installclean && mka bacon
-# lunch lineage_Mi439_4_19-bp1a-eng && make installclean && mka bacon
+. build/envsetup.sh
+# from vendor/gapps type
+export WITH_GMS=true
+export TARGET_CORE_GMS=true
+export TARGET_ENABLE_BLUR=true
+export TARGET_PREBUILT_LAWNCHAIR_LAUNCHER=true
+riseup sunny user
+rise b
