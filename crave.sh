@@ -8,3 +8,4 @@ git clone https://github.com/RisingOS-Revived-devices/vendor_xiaomi_sunny.git -b
 . build/envsetup.sh
 Riseup sunny user
 Rise b
+
