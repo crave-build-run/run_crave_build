@@ -14,5 +14,5 @@ git clone https://github.com/KProfiles/android_packages_apps_KProfiles.git -b ma
 git clone https://github.com/cyberknight777/android_packages_apps_DisplayFeatures.git -b master packages/apps/DisplayFeatures
 
 . build/envsetup.sh
-Riseup sunny user
-Rise b
+riseup sunny user
+rise b
