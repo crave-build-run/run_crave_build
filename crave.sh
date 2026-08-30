@@ -3,7 +3,8 @@ repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen 
 
 git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git -b seventeen device/xiaomi/sunny
 
-git clone https://github.com/PixelOS-Devices/android_device_xiaomi_sunny-kernel.git -b seventeen device/xiaomi/sunny-kernel
+# git clone https://github.com/PixelOS-Devices/android_device_xiaomi_sunny-kernel.git -b seventeen device/xiaomi/sunny-kernel
+git clone https://github.com/Neternels/android_kernel_xiaomi_sunny.git -b staging kernel/xiaomi/sunny
 
 git clone https://gitlab.com/NoPrincessHere/proprietary_vendor_xiaomi_sunny.git -b seventeen vendor/xiaomi/sunny
 
