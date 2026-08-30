@@ -1,7 +1,7 @@
 repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen --git-lfs
 /opt/crave/resync.sh
 
-git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git -b 17 device/xiaomi/sunny
+git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git -b seventeen device/xiaomi/sunny
 
 git clone https://github.com/PixelOS-Devices/android_device_xiaomi_sunny-kernel.git -b seventeen device/xiaomi/sunny-kernel
 
