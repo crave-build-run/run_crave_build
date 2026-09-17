@@ -1,18 +1,29 @@
 repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen --git-lfs
 /opt/crave/resync.sh
 
-git clone https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git -b seventeen device/xiaomi/sunny
+git clone -b seventeen https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git device/xiaomi/sunny
+cd device/xiaomi/sunny
+git fetch --all
+git reset --hard origin/seventeen
+git clean -fd
+cd ../../..
 
-# git clone https://github.com/PixelOS-Devices/android_device_xiaomi_sunny-kernel.git -b seventeen device/xiaomi/sunny-kernel
-git clone https://github.com/Neternels/android_kernel_xiaomi_sunny.git -b staging kernel/xiaomi/sunny
+git clone https://github.com/RisingOS-Revived-devices/vendor_xiaomi_sunny.git -b seventeen vendor/xiaomi/sunny
+cd vendor/xiaomi/sunny
+git fetch --all
+git reset --hard origin/seventeen
+git clean -fd
+cd ../../..
 
-git clone https://gitlab.com/NoPrincessHere/proprietary_vendor_xiaomi_sunny.git -b seventeen vendor/xiaomi/sunny
+git clone --depth 1 -b seventeen https://github.com/PixelOS-Devices/android_device_xiaomi_sunny-kernel.git device/xiaomi/sunny-kernel
 
-git clone https://github.com/PixelOS-AOSP/android_hardware_xiaomi.git -b seventeen hardware/xiaomi
+git clone --depth 1 -b seventeen https://github.com/PixelOS-AOSP/android_hardware_xiaomi.git hardware/xiaomi
 
-git clone https://github.com/KProfiles/android_packages_apps_KProfiles.git -b main packages/apps/KProfiles
+git clone --depth 1 -b main https://github.com/KProfiles/android_packages_apps_KProfiles.git packages/apps/KProfiles
 
-git clone https://github.com/cyberknight777/android_packages_apps_DisplayFeatures.git -b master packages/apps/DisplayFeatures
+git clone --depth 1 -b master https://github.com/cyberknight777/android_packages_apps_DisplayFeatures.git packages/apps/DisplayFeatures
+
+
 
 . build/envsetup.sh
 riseup sunny user
