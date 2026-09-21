@@ -26,7 +26,9 @@ git clone --depth 1 -b main https://github.com/KProfiles/android_packages_apps_K
 git clone --depth 1 -b master https://github.com/cyberknight777/android_packages_apps_DisplayFeatures.git packages/apps/DisplayFeatures
 
 git clone https://github.com/private-keys/vendor_lineage-priv_keys.git --depth 1 -b main vendor/lineage-priv/keys
-
+cd build/soong
+curl -s https://github.com/yaap-17-stone/build_soong/commit/f9c27b0b9298f6eeee9a850346e0a646c3eaeb87.patch | git am
+cd ../..
 
 
 . build/envsetup.sh
