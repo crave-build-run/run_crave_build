@@ -32,5 +32,7 @@ cd ../..
 
 
 . build/envsetup.sh
+export WITH_GMS=true
+export TARGET_USES_PICO_GAPPS=true
 riseup sunny user
 rise b
