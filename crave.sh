@@ -1,6 +1,6 @@
-# repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen --git-lfs
-# /opt/crave/resync.sh
-# repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags
+repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen --git-lfs
+/opt/crave/resync.sh
+repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags
 
 
 git clone -b seventeen https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git device/xiaomi/sunny
@@ -32,7 +32,5 @@ git clone https://github.com/private-keys/vendor_lineage-priv_keys.git --depth 1
 
 
 . build/envsetup.sh
-export WITH_GMS=true
-export TARGET_USES_PICO_GAPPS=true
-riseup sunny user
-rise b
+Riseup sunny user
+Rise b
