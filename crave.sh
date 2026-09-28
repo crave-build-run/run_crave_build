@@ -32,5 +32,5 @@ git clone https://github.com/private-keys/vendor_lineage-priv_keys.git --depth 1
 
 
 . build/envsetup.sh
-Riseup sunny user
-Rise b
+Rise𐓶p  s𐓶nny 𐓶ser
+Risｅ  ᑲ
