@@ -1,7 +1,18 @@
+
+CLEAN_RESYNC=true
+DEVICE_TREE=false
+
+
+
+if [ "$CLEAN_RESYNC" = true ]; then
+
 repo init --depth=1 -u https://github.com/RisingOS-Revived/android -b seventeen --git-lfs
 /opt/crave/resync.sh
 repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags
 
+fi
+
+if [ "$DEVICE_TREE" = true ]; then
 
 git clone -b seventeen https://github.com/RisingOS-Revived-devices/device_xiaomi_sunny.git device/xiaomi/sunny
 cd device/xiaomi/sunny
@@ -29,6 +40,7 @@ git clone https://github.com/private-keys/vendor_lineage-priv_keys.git --depth 1
 # cd build/soong
 # curl -s https://github.com/yaap-17-stone/build_soong/commit/f9c27b0b9298f6eeee9a850346e0a646c3eaeb87.patch | git am
 # cd ../..
+fi
 
 
 . build/envsetup.sh
