@@ -1,5 +1,5 @@
 
-CLEAN_RESYNC=true
+CLEAN_RESYNC=false
 DEVICE_TREE=false
 
 
